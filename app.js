@@ -13,7 +13,6 @@ function sum(a, b) {
   //eslint-disable-line
   // return array where first element is the sum of the numbers and the second is a concatened string "The sum of 4 and 7 is 11."
   var total = a + b;
-  console.log([total, `The sum of ${a} and ${b} is ${total}.`]);
   return [total, `The sum of ${a} and ${b} is ${total}.`];
 }
 
@@ -53,16 +52,16 @@ Test this function by hand in the console to get it working, and when you think 
 function sumAndMultiply(a, b, c) {
   //eslint-disable-line
   // first element is the sum of all 3, second is the product of all 3, third is "4 and 7 and 5 sum to 16", fourth is "The product of 4 and 7 and 5 is 140."
-  var sum = a + b + c;
-  var product = a * b * c;
+  var sumTotal = sum(sum(a, b)[0], c)[0];
+  var productTotal = multiply(multiply(a, b)[0], c)[0];
+
   return [
-    sum,
-    product,
-    `${a} and ${b} and ${c} sum to ${sum}.`,
-    `The product of ${a} and ${b} and ${c} is ${product}.`
+    sumTotal,
+    productTotal,
+    `${a} and ${b} and ${c} sum to ${sumTotal}.`,
+    `The product of ${a} and ${b} and ${c} is ${productTotal}.`
   ];
 }
-
 // Here is the test for sumAndMultiply(); uncomment it to run it
 testSumAndMultiply(4, 7, 5);
 
@@ -80,11 +79,9 @@ var testArray = [2, 3, 4]; //eslint-disable-line
 
 function sumArray(sumArr) {
   //eslint-disable-line
-  // first element is sum of the numbers, and second is "2,3,4 was passed in as an array of numbers, and 9 is their sum."
+  //first element is sum of the numbers, and second is "2,3,4 was passed in as an array of numbers, and 9 is their sum."
   var total = 0;
-  sumArr.forEach(function(num) {
-    total += num;
-  });
+  total = sum(sum(sumArr[0], sumArr[1])[0], sumArr[2])[0];
   return [
     total,
     `${sumArr[0]},${sumArr[1]},${
@@ -110,9 +107,7 @@ function multiplyArray(multArr) {
   //eslint-disable-line
   // product of all numbers, "The numbers 2,3,4 have a product of 24."
   var total = 1;
-  multArr.forEach(function(num) {
-    total *= num;
-  });
+  total = multiply(multiply(multArr[0], multArr[1])[0], multArr[2])[0];
   return [
     total,
     `The numbers ${multArr[0]},${multArr[1]},${
@@ -143,6 +138,7 @@ var testDynamicArray = [1, 2, 3, 4, 5]; //eslint-disable-line
 
 function multiplyAnyArray(dynamicArray) {
   //eslint-disable-line
+  // first element is product of those numbers, second "The numbers 1,2,3,4,5 have a product of 120."
 }
 
 // Here is the test for multiplyArray(); uncomment it to run it
